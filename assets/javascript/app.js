@@ -6,6 +6,7 @@ $(document).ready(function () {
     var numWrong = 0;
     var numUnanswered = 0;
     var counter = 0;
+    var counter2 = 0;
     var intervalId;
     var questions = ["1. 'Bears.  Beets...'",
         "2. What is the name of Michael Scott's screenplay?",
@@ -35,13 +36,49 @@ $(document).ready(function () {
         intervalId = setInterval(decrement, 1000);
     };
 
-    function qGenerator(num) {
-        if (num = 2) {
+    function qGenerator() {
+        
+        if (counter === 2) {
             question2();
-        } else if (num = 4) {
-            question3();
+            console.log(counter);
         };
+        if (counter === 4) {
+            question3();
+            console.log(counter);
+        };
+        if (counter === 6) {
+            question4();
+            console.log(counter);
+        };
+        if (counter === 8) {
+            question5();
+            console.log(counter);
+        };
+        if (counter === 10) {
+            question6();
+            console.log(counter);
+        };
+        if (counter === 12) {
+            question7();
+            console.log(counter);
+        };
+        if (counter === 14) {
+            question8();
+            console.log(counter);
+        };
+        if (counter === 16) {
+            question9();
+            console.log(counter);
+        };
+        if (counter === 18) {
+            question10();
+            console.log(counter);
+        };
+        if (counter === 20) {
+            endGame();
+        }
     };
+
 
     function intermission() {
         clearInterval(intervalId);
@@ -53,10 +90,12 @@ $(document).ready(function () {
         clearInterval(intervalId);
         intervalId = setInterval(decrement2, 1000);
         $("#question-text").html("<h2>You didn't answer!</h2>");
+        $("#question-text").append("<img src='assets/images/michaelWHY.gif'>");
         $("#answer1-text").empty();
         $("#answer2-text").empty();
         $("#answer3-text").empty();
         $("#answer4-text").empty();
+        numUnanswered++;
     };
 
     function decrement() {
@@ -75,7 +114,8 @@ $(document).ready(function () {
         if (interTime === 0) {
             stop();
             counter++;
-            qGenerator(counter);
+            qGenerator();
+            console.log("hyah");
         };
 
     };
@@ -135,11 +175,11 @@ $(document).ready(function () {
         $("#answer1-text").html("<h4>" + arr2[0] + "</h4>");
         $("#answer1-text").attr("data-answervalue", 1);
         $("#answer2-text").html("<h4>" + arr2[1] + "</h4>");
-        $("#answer2-text").attr("data-answervalue", 0);
+        $("#answer2-text").attr("data-answervalue", 1);
         $("#answer3-text").html("<h4>" + arr2[2] + "</h4>");
         $("#answer3-text").attr("data-answervalue", 1);
         $("#answer4-text").html("<h4>" + arr2[3] + "</h4>");
-        $("#answer4-text").attr("data-answervalue", 1);
+        $("#answer4-text").attr("data-answervalue", 0);
     };
 
     function question1() {
@@ -148,40 +188,69 @@ $(document).ready(function () {
 
     function question2() {
         questionB(questions[1], answers2);
+        time = 31;
+        interTime = 5;
 
     };
 
     function question3() {
         questionA(questions[2], answers3);
+        time = 31;
+        interTime = 5;
     };
 
     function question4() {
         questionD(questions[3], answers4);
+        time = 31;
+        interTime = 5;
     };
 
     function question5() {
         questionB(questions[4], answers5);
+        time = 31;
+        interTime = 5;
     };
 
     function question6() {
         questionC(questions[5], answers6);
+        time = 31;
+        interTime = 5;
     };
 
     function question7() {
         questionC(questions[6], answers7);
+        time = 31;
+        interTime = 5;
     };
 
     function question8() {
         questionB(questions[7], answers8);
+        time = 31;
+        interTime = 5;
     };
 
     function question9() {
         questionA(questions[8], answers9);
+        time = 31;
+        interTime = 5;
     };
 
     function question10() {
         questionD(questions[9], answers10);
+        time = 31;
+        interTime = 5;
     };
+
+    function endGame() {
+        $("#question-text").html("<h2>Here are your results!</h2>");
+
+        $("#question-text").append("<h4>Questions right: " + numRight + "</h4>");
+        $("#question-text").append("<h4>Questions wrong: " + numWrong + "</h4>");
+        $("#question-text").append("<h4>Questions unanswered: " + numUnanswered + "</h4>");
+        $("#question-text").append("<h4>You were " + ((numRight / 10) * 100) + " % correct.</h4>");
+        $(".btn").text("Restart?");
+        $(".btn").on("click", gameStart);
+    }
 
 
     gameStart();
@@ -215,13 +284,11 @@ $(document).ready(function () {
             numWrong++;
             counter++;
             $("#question-text").html("<h2>You are incorrect!</h2>");
-            $("#question-text").append("<img src='assets/images/michaelWHY.gif'>");
+            $("#question-text").append("<img src='assets/images/angelaBandit.gif'>");
             intermission();
-        }
+        };
 
-        console.log(numRight);
-        console.log(numWrong);
-        console.log(counter);
+
 
     });
     });
