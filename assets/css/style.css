@@ -5,3 +5,13 @@ body {
 .container {
     width: 960px;
 }
+
+
+.answer-text:hover {
+    background-color: darkgray;
+
+}
+
+.btn {
+    margin: 0 auto;
+}
