@@ -6,8 +6,11 @@ $(document).ready(function () {
     var numWrong = 0;
     var numUnanswered = 0;
     var counter = 0;
-    var counter2 = 0;
+    var imageYes = -1;
+    var imageNo = -1;
     var intervalId;
+    var yesImages = ["pamYup.gif", "dwightYES.gif", "andy.gif", "perfectenschlag.gif", "jimUniverse.gif", "dwightArmsUp.gif", "erinYeah.gif", "raisetheroof.gif", "jimThisGuy.gif", "michaelOkay.gif"];
+    var noImages = ["michaelNO.gif", "angelaBandit.gif", "kevinEmotional.gif", "unbelievable.gif", "michaelWorst.gif", "michaelNO.gif", "angelaBandit.gif", "kevinEmotional.gif", "unbelievable.gif", "michaelWorst.gif"];
     var questions = ["1. 'Bears.  Beets...'",
         "2. What is the name of Michael Scott's screenplay?",
         "3. Toby went to this country only to break his neck shortly after arriving there.",
@@ -248,19 +251,46 @@ $(document).ready(function () {
         $("#question-text").append("<h4>Questions wrong: " + numWrong + "</h4>");
         $("#question-text").append("<h4>Questions unanswered: " + numUnanswered + "</h4>");
         $("#question-text").append("<h4>You were " + ((numRight / 10) * 100) + " % correct.</h4>");
-        $(".btn").text("Restart?");
-        $(".btn").on("click", gameStart);
-    }
+        $("#restart").show();
+        $("#restart").on("click", function () {
+            $("#question-text").empty();
+            $("#answer1-text").empty();
+            $("#answer2-text").empty();
+            $("#answer3-text").empty();
+            $("#answer4-text").empty();
+            $("#timer-text").empty();
+            // time = 31;
+            // interTime = 5;
+            // numRight = 0;
+            // numWrong = 0;
+            // numUnanswered = 0;
+            // counter = 0;
+            // imageYes = -1;
+            // imageNo = -1;
+            gameStart();
+        });
+    };
 
 
+    
     gameStart();
-
-
+    
     function gameStart() {
-
-    $(".btn").on("click", function () {
-        question1();
-        $(".btn").empty();
+        $("#restart").hide();
+        $("#start").show();
+        $("#start").on("click", function () {
+            
+            
+            $("#start").hide();
+            time = 31;
+            interTime = 5;
+            numRight = 0;
+            numWrong = 0;
+            numUnanswered = 0;
+            counter = 0;
+            imageYes = -1;
+            imageNo = -1;
+            question1();
 
     
     $(".answer-text").on("click", function () {
@@ -277,14 +307,16 @@ $(document).ready(function () {
         if (rightwrong === 0) {
             numRight++;
             counter++;
+            imageYes++;
             $("#question-text").html("<h2>You are correct!</h2>");
-            $("#question-text").append("<img src='assets/images/pamYup.gif'>");
+            $("#question-text").append("<img src='assets/images/" + yesImages[imageYes] + "'>");
             intermission();
         } else if (rightwrong === 1) {
             numWrong++;
             counter++;
+            imageNo++;
             $("#question-text").html("<h2>You are incorrect!</h2>");
-            $("#question-text").append("<img src='assets/images/angelaBandit.gif'>");
+            $("#question-text").append("<img src='assets/images/" + noImages[imageNo] + "'>");
             intermission();
         };
 

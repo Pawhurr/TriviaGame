@@ -15,3 +15,13 @@ body {
 .btn {
     margin: 0 auto;
 }
+
+.title-text {
+    position: relative;
+    bottom: 50px;
+    right: 130px;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans-serif;
+    color: darkgray;
+}
